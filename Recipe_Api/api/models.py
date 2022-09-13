@@ -1,10 +1,21 @@
-from elasticsearch_dsl import Keyword, Text
+
+from elasticsearch_dsl import Object, Nested
 from django.db import models
 
 # Create your models here.
+"""
+class Ingredients(models.Model):
+    quantity = models.CharField(max_length=100)
+    ingredient = models.CharField(max_length=500)
+"""
 
 class Recipe(models.Model):
-    
     name = models.CharField(max_length=100)
+    labels = models.CharField(max_length=100)
+    #ingredients = models.ManyToManyField(to=Ingredients)
+    #recipe_steps = Nested()
+
+
+
 
     
