@@ -1,12 +1,22 @@
 # from dataclasses import fields
-from django_elasticsearch_dsl import Document, Index, fields
+from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl.registries import registry
-from .models import Recipe
+from .models import Recipe, Ingredient, Reccipe_step
 
 
 @registry.register_document
-class RecipeDocement(Document):
+class RecipeDocument(Document):
+    ingredients = fields.NestedField(properties={
+        "name": fields.TextField(),
+        "quantity" : fields.TextField()
 
+    })
+
+    steps = fields.NestedField(properties={
+        "step": fields.IntegerField(),
+        "description" : fields.TextField()
+
+    })
 
     class Index:
         name = 'r_recipe'
@@ -16,6 +26,8 @@ class RecipeDocement(Document):
         fields = [
             'name',
             'labels',
-            'ingredients',
-            'recipe_steps'
+            "ingredient",
+            'recipe_step'
         ]
+        related_models = [Ingredient, Reccipe_step]
+
