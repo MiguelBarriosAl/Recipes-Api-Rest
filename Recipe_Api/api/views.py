@@ -13,8 +13,14 @@ class RecipeView(View):
     def post(self, request):
         jd = json.loads(request.body)
         name_data = jd['name']
+        labels = jd['labels']
+        ingredients = jd['ingredients']
+        recipe_steps = jd['recipe_steps']   
         recipe = Recipe(
-            name=name_data
+            name=name_data,
+            labels=labels,
+            ingredients=ingredients,
+            recipe_steps=recipe_steps
             )
         recipe.save()
         data = {"Message": "Success"}

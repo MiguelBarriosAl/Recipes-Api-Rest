@@ -11,9 +11,9 @@ class Ingredients(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=100)
-    labels = models.CharField(max_length=100)
-    #ingredients = models.ManyToManyField(to=Ingredients)
-    #recipe_steps = Nested()
+    labels = models.CharField(max_length=100, default="null")
+    ingredients = models.CharField(max_length=100, default="null")
+    recipe_steps = models.CharField(max_length=100, default="null")
 
 
 

@@ -15,7 +15,7 @@ class RecipeDocement(Document):
         model = Recipe
         fields = [
             'name',
-            'labels'
-            #'ingredients',
-            #'recipe_steps'
+            'labels',
+            'ingredients',
+            'recipe_steps'
         ]
