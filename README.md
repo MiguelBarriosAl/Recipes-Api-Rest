@@ -10,7 +10,7 @@
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Run](#Run)
-- [Data](#Introductions)
+- [Data](#Data)
 - [Examples](#Examples)
 
 # Introduction
