@@ -61,7 +61,11 @@ class RecipeSearch(View):
         try:
             jd = json.loads(request.body)
             query = jd['term']
-            s = Search(index="r_recipe").query("nested", path="ingredients", query=Q("match", **{"ingredients.ingredient": query}))
+            s = Search(index="r_recipe").query("bool", should=[
+                Q("nested", path="ingredients", query=Q("match", **{"ingredients.ingredient": query})), 
+                Q("nested", path="steps", query=Q("match", **{"steps.description": query})),
+                Q("match", labels= query)
+                ])
             search = s.execute()
             all_recipes = []
             for hit in search:
