@@ -69,7 +69,6 @@ class RecipeSearch(View):
             search = s.execute()
             all_recipes = []
             for hit in search:
-                print(hit)
                 data = {
                     "name" : hit.name,  
                     "labels" : hit.labels,
