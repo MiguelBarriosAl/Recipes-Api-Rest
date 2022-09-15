@@ -9,7 +9,7 @@ from elasticsearch import Elasticsearch
 from .models import Recipe
 
 
-class RecipeView(View):
+class RecipeNew(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
@@ -33,6 +33,11 @@ class RecipeView(View):
         except Exception as e:
             return HttpResponse(e, status=400)
 
+class RecipeView(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request):
         try:
             jd = json.loads(request.body)
@@ -44,8 +49,8 @@ class RecipeView(View):
                 data = {
                     "name" : hit.name,  
                     "labels" : hit.labels,
-                    "ingredient" : hit.ingredient, 
-                    "recipe_steps" : hit.recipe_steps}
+                    "ingredients" : hit.ingredients, 
+                    "steps" : hit.steps}
                 all_recipes.append(str(data))
             return JsonResponse(all_recipes, safe=False)
         except Exception as e:
