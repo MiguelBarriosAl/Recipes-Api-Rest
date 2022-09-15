@@ -5,7 +5,7 @@
 </p>
 
 # Table of Contents
-- [Introductions](#Introductions)
+- [Introduction](#Introduction)
 - [Motivation](#Motivation)
 - [Requirements](#Requirements)
 - [Installation](#Installation)
