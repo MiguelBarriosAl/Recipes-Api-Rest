@@ -16,7 +16,6 @@ class RecipeView(View):
     
     def post(self, request):
         try:
-
             jd = json.loads(request.body)
             name_data = jd['name']
             labels = jd['labels']
@@ -25,8 +24,8 @@ class RecipeView(View):
             recipe = Recipe(
                 name=name_data,
                 labels=labels,
-                ingredient=ingredient,
-                recipe_step=recipe_step
+                ingredients=ingredient,
+                steps=recipe_step
                 )
             recipe.save()
             data = {"Message": "New Recipe Save"}
@@ -62,15 +61,16 @@ class RecipeSearch(View):
         try:
             jd = json.loads(request.body)
             query = jd['term']
-            s = Search(index="r_recipe").query("nested", path="ingredient", query=Q("match", **{"ingredient.name": query}))
+            s = Search(index="r_recipe").query("nested", path="ingredients", query=Q("match", **{"ingredients.ingredient": query}))
             search = s.execute()
             all_recipes = []
             for hit in search:
+                print(hit)
                 data = {
                     "name" : hit.name,  
                     "labels" : hit.labels,
-                    "ingredient" : hit.ingredient, 
-                    "recipe_steps" : hit.recipe_steps}
+                    "ingredients" : hit.ingredients, 
+                    "steps" : hit.steps}
                 all_recipes.append(str(data))
             return JsonResponse(all_recipes, safe=False)
         except Exception as e:
