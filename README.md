@@ -40,7 +40,7 @@ For its integration it was necessary to read the [django_elasticsearch_dsl](http
 
         sudo apt update
 
-        sudo apt install python3.9
+        sudo apt install python3.10
 
         python --version
 
