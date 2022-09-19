@@ -85,7 +85,7 @@ The file is composed of a docker compose and two sh files to start or stop the s
 ## Django
 
     cd \Recipes-Api-Rest
-    python .\manage.py runserve
+    python .\manage.py runserver
 
 # Data
 I have decided to realize the following data model for Elasticsearch documents as follows in the example:
