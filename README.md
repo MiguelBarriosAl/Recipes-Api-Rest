@@ -129,7 +129,7 @@ The JSON French fries is taken into account in the BODY.
 
 ### Create a new recipe
 
-    curl --location --request GET 'http://127.0.0.1:8000/api/new/' \
+    curl --location --request POST 'http://127.0.0.1:8000/api/new/' \
     --header 'Content-Type: text/plain' \
     --data-raw '
         {BODY}'
@@ -148,7 +148,7 @@ Simple search by recipe name. The API could be modified to search by register ID
 ### Modify a recipe
 Through this request we can modify the value of a field of our choice, selecting the recipe by its name
 
-    curl --location --request GET 'http://127.0.0.1:8000/api/update/' \
+    curl --location --request POST 'http://127.0.0.1:8000/api/update/' \
     --data-raw '{
         "field": "name",
         "value": "French Fries with Cheese"

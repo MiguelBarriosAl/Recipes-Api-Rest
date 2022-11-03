@@ -97,9 +97,8 @@ class RecipeUpdate(View):
             value = jd['value']
             query = str(jd['query'])
             path = "ctx._source.{}='{}'".format(field, value)
-            print(path, query)
             s = UpdateByQuery(index="r_recipe").script(source=path).query("match", **{"name": query})
-            search = s.execute()
+            s.execute()
             data = {"Message": "Update Saved"}
             return JsonResponse(data)
         except Exception as e:
